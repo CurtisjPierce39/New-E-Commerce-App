@@ -1,0 +1,63 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install dependencies
+      working-directory: ./advanced-e-commerce-app
+      run: npm ci
+
+    - name: Run tests
+      working-directory: ./advanced-e-commerce-app
+      run: npm test
+
+    - name: Build
+      working-directory: ./advanced-e-commerce-app
+      run: npm run build
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install dependencies
+      working-directory: ./advanced-e-commerce-app
+      run: npm ci
+
+    - name: Build
+      working-directory: ./advanced-e-commerce-app
+      run: npm run build
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./advanced-e-commerce-app/dist
+
+    - name: Build
+      run: npm run build
