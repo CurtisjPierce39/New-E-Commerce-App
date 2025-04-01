@@ -10,6 +10,7 @@ interface User {
     displayName: string;
 }
 
+
 const AddDataForm: React.FC = () => {
     const [data, setData] = useState<User>({ name: '', email: '', address: '', displayName: ''});
 
