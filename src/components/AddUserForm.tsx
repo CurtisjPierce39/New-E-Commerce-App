@@ -33,11 +33,11 @@ const AddDataForm: React.FC = () => {
     return (
         <form onSubmit={(e: React.FormEvent) => { void handleSubmit(e); }}>
             <h1>Add New User</h1>
-            <input name="name" value={data.name} onChange={handleChange} placeholder="Name" /><br></br>
-            <input name="email" value={data.email} onChange={handleChange} placeholder="Email" /><br></br>
-            <input name="address" value={data.address} onChange={handleChange} placeholder="Address" /><br></br>
+            <input name="name" value={data.name} onChange={handleChange} placeholder="Name" />
+            <input name="email" value={data.email} onChange={handleChange} placeholder="Email" />
+            <input name="address" value={data.address} onChange={handleChange} placeholder="Address" />
             <input name="displayName" value={data.displayName} onChange={handleChange} placeholder="Display Name" /><br></br>
-            <button type="submit">Add User</button>
+            <button type="submit" className='m-3'>Add User</button>
         </form>
     );
 };

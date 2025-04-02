@@ -13,6 +13,7 @@ import { store } from './types';
 import './App.css'
 import { Checkout } from './components/Checkout';
 import DisplayData from './components/DisplayUsers';
+import AddDataForm from './components/AddUserForm';
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { currentUser, loading } = useAuth();
@@ -49,6 +50,7 @@ function App() {
                   <ProtectedRoute>
                     <UserProfile />
                     <DisplayData />
+                    <AddDataForm />
                   </ProtectedRoute>
                 } />
                 <Route path="/orders" element={

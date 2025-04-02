@@ -8,6 +8,7 @@
 div {
   background-color: #000000;
   color: white;
+  text-shadow: 0 0 3px rgb(186, 127, 127);
 }
 
 .card {
@@ -24,6 +25,7 @@ button:hover {
 button {
   background-color: rgb(111, 111, 111);
   color: black;
+  box-shadow: 0 0 5px white;
 }
 
 .content {

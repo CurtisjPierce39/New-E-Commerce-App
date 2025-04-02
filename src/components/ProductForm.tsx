@@ -12,7 +12,7 @@ const ProductForm: React.FC = () => {
         category: '',
     });
 
-    
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setProduct(prev => ({
@@ -44,7 +44,6 @@ const ProductForm: React.FC = () => {
                 alert('Product added successfully!');
             } catch (error) {
                 console.error('Error adding product:', error);
-                // alert('Failed to add product');
             }
         })();
     };
@@ -58,6 +57,7 @@ const ProductForm: React.FC = () => {
                     type="text"
                     id="name"
                     name="name"
+                    placeholder='Enter Price Here'
                     value={product.name}
                     onChange={handleChange}
                     required
@@ -78,9 +78,10 @@ const ProductForm: React.FC = () => {
             <div>
                 <label htmlFor="description">Description</label>
                 <textarea
-                    className='m-2'
+                    className='m-2 p-2'
                     id="description"
                     name="description"
+                    placeholder='Enter Description Here'
                     value={product.description}
                     onChange={handleChange}
                     required
@@ -105,6 +106,7 @@ const ProductForm: React.FC = () => {
                     type="text"
                     id="imageUrl"
                     name="imageUrl"
+                    placeholder='Enter Image URL Here'
                     value={product.imageUrl}
                     onChange={handleChange}
                     required
@@ -117,6 +119,7 @@ const ProductForm: React.FC = () => {
                     type="text"
                     id="category"
                     name="category"
+                    placeholder='Enter Category Here'
                     value={product.category}
                     onChange={handleChange}
                     required
