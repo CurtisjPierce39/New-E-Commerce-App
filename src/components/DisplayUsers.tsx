@@ -10,6 +10,7 @@ interface User {
     displayName: string;
 }
 
+
 const DisplayData = () => {
     const [users, setUsers] = useState<User[]>([]);
     const [newEmail, setNewEmail] = useState<string>('');
