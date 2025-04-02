@@ -1,6 +1,5 @@
 name: CI/CD
 
-# Run the workflow on pushes and pull requests
 on:
   push:
     branches:
@@ -14,20 +13,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the repository code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18' # Use a Node.js version compatible with your React app
+          node-version: '18'
 
-      # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
 
-      # Step 4: Run tests
       - name: Run tests
         run: npm test -- --watchAll=false
