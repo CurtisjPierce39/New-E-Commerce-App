@@ -9,6 +9,7 @@ export const ProductList: React.FC = () => {
     const [products, setProducts] = useState<(Product & { id: string })[]>([]);
     const [loading, setLoading] = useState(true);
 
+    
     useEffect(() => {
         const loadProducts = async () => {
             try {
