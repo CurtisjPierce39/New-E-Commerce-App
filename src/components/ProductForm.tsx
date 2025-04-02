@@ -12,6 +12,7 @@ const ProductForm: React.FC = () => {
         category: '',
     });
 
+    
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setProduct(prev => ({
