@@ -9,6 +9,7 @@ interface UserProfile {
     displayName?: string;
 }
 
+
 export const UserProfile: React.FC = () => {
     const [profile, setProfile] = useState<UserProfile | null>(null);
     const [isEditing, setIsEditing] = useState(false);
