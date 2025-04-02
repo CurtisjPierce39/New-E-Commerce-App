@@ -5,12 +5,12 @@ import { removeFromCart } from '../store/cartSlice';
 import { useNavigate } from 'react-router-dom';
 
 interface CartItem {
-    id: string;
+    id: string | number;
     description: string;
     name: string;
     price: number;
     quantity: number;
-    image: string;
+    image?: string;
 }
 
 export const ShoppingCart: React.FC = () => {
@@ -26,17 +26,17 @@ export const ShoppingCart: React.FC = () => {
     };
 
     return (
-        <div className="container mx-auto px-4 py-8">
-            <h1 className="text-3xl font-bold mb-6">Shopping Cart</h1>
+        <div className="container">
+            <h1>Shopping Cart</h1>
             {cartItems.length === 0 ? (
-                <p className="text-lg text-gray-600">Your cart is empty</p>
+                <h3>Your cart is empty</h3>
             ) : (
-                <div className="container grid-cols-3 md:grid-cols-3 gap-5 content">
+                <div className="container content">
                     {cartItems.map((item: CartItem) => (
-                        <div key={item.id} className="flex border rounded-lg bg-gradient p-4">
-                            <div className="flex items-center space-x-4">
-                                <img src={item.image} alt={item.name} className="rounded img-fluid" />
-                                <div className="flex flex-col space-y-2">
+                        <div key={item.id} className="flex border rounded bg-gradient p-4">
+                            <div className="flex items-center border rounded">
+                                <img src={item.image} alt={item.name} className="border rounded img-fluid" />
+                                <div className="flex rounded flex-col">
                                     <h2>{item.name}</h2>
                                     <p>{item.description}</p>
                                     <div>
@@ -54,7 +54,7 @@ export const ShoppingCart: React.FC = () => {
                                         console.error('Error removing item:', errorMessage);
                                     }
                                 }}
-                                className="px-4 py-2 text-white rounded hover:opacity-90 transition-opacity"
+                                className="px-4 py-2 text-white rounded"
                                 style={{ backgroundColor: 'crimson' }}
                             >
                                 Remove
@@ -67,7 +67,7 @@ export const ShoppingCart: React.FC = () => {
                             <p>Total Price: ${totalPrice}</p>
                             <button
                                 onClick={handleCheckout}
-                                className="md:w-auto px-6 py-3 text-white rounded-lg hover:opacity-90 transition-opacity mt-4"
+                                className="rounded py-3 text-white"
                                 style={{ backgroundColor: 'crimson' }}
                             >
                                 Proceed to Checkout

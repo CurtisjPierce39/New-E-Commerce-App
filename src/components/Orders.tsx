@@ -48,8 +48,8 @@ const OrderHistory: React.FC = () => {
                 <p>No orders found</p>
             ) : (
                 orders.map((order) => (
-                    <div key={order.id} className="border m-5 pb-4 mx-5 rounded">
-                        <div className="order-header border m-2 bg-gradient rounded">
+                    <div key={order.id} className="border m-3 pb-4 mx-5 rounded">
+                        <div className="order-header border m-2 p-3 bg-gradient rounded">
                             <span>Order ID: {order.id}</span><br></br>
                             <span>User ID: {order.userId}</span><br></br>
                             <span>Date: {order.createdAt instanceof Date ? order.createdAt.toLocaleDateString() : new Date(order.createdAt * 1000).toLocaleDateString()}</span>

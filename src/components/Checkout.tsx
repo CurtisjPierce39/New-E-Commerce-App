@@ -104,11 +104,11 @@ export const Checkout: React.FC = () => {
     return (
         <div className="container">
             <h2>Checkout</h2>
-            <div className="border p-4 rounded container grid-cols-3 md:grid-cols-3 gap-4 justify-content-md-center bg-gradient">
+            <div className="border p-4 rounded container bg-gradient">
                 <h3 className='border rounded mx-5 p-3'>Order Summary</h3>
                 {cart.items.map(item => (
                     <div key={item.id} className="flex border py-4 content rounded">
-                        <img src={item.image} alt={item.name} className="w-24 h-24 m-5 rounded object-contain img-fluid" />
+                        <img src={item.image} alt={item.name} className="w-24 h-24 m-5 rounded img-fluid" />
                         <p>{item.name}</p><br></br>
                         <p>{item.description}</p><br></br>
                         <span><strong>{item.quantity} x ${item.price} = {item.price * item.quantity}</strong></span>

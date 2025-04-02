@@ -48,7 +48,6 @@ const DisplayData = () => {
             {users.map((user) => (
                 <div
                     key={user.id}
-                    style={{ border: '2px solid black', margin: '10px' }}
                     className='border p-4 bg-gradient rounded'
                 >
                     <div key={user.id} className='bg-gradient rounded p-3 border'>
