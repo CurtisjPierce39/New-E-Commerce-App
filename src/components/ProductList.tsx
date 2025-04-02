@@ -29,7 +29,7 @@ export const ProductList: React.FC = () => {
     return (
         <div>
             <h1 className='p-4' >Product List</h1>
-            <div className="container grid-cols-3 md:grid-cols-3 gap-5 content">
+            <div className="container content">
                 {products.map((product) => (
                     <div key={product.id} className="border p-4 rounded bg-gradient">
                         <img className='img-fluid rounded' src={product.imageUrl} alt={product.name} />

@@ -42,21 +42,21 @@ const OrderHistory: React.FC = () => {
     if (error) return <div className="error-message">{error}</div>;
 
     return (
-        <div className="order-history">
+        <div>
             <h2>Order History</h2>
             {orders.length === 0 ? (
                 <p>No orders found</p>
             ) : (
                 orders.map((order) => (
                     <div key={order.id} className="border m-3 pb-4 mx-5 rounded">
-                        <div className="order-header border m-2 p-3 bg-gradient rounded">
+                        <div className="border m-2 p-3 bg-gradient rounded">
                             <span>Order ID: {order.id}</span><br></br>
                             <span>User ID: {order.userId}</span><br></br>
                             <span>Date: {order.createdAt instanceof Date ? order.createdAt.toLocaleDateString() : new Date(order.createdAt * 1000).toLocaleDateString()}</span>
                         </div>
                         <div>
                             {order.items.map((item: OrderItem, index: number) => (
-                                <div key={index} className="order-item"><br></br>
+                                <div key={index}><br></br>
                                     <span>Product: {item.name}</span><br></br>
                                     <span>Quantity: {item.quantity}</span><br></br>
                                     <span>Price: ${item.price}</span><br></br>

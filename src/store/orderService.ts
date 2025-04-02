@@ -11,6 +11,7 @@ import {
 import { db } from '../types/firebaseConfig';
 
 export interface OrderItem {
+    name: string;
     productId: string;
     productName: string,
     quantity: number;
@@ -18,6 +19,7 @@ export interface OrderItem {
 }
 
 export interface Order {
+    totalAmount: number;
     id: string;
     userId: string;
     items: OrderItem[];

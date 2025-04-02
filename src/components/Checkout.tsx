@@ -104,24 +104,24 @@ export const Checkout: React.FC = () => {
     return (
         <div className="container">
             <h2>Checkout</h2>
-            <div className="border p-4 rounded container bg-gradient">
+            <div className="border p-4 rounded bg-gradient">
                 <h3 className='border rounded mx-5 p-3'>Order Summary</h3>
                 {cart.items.map(item => (
                     <div key={item.id} className="flex border py-4 content rounded">
-                        <img src={item.image} alt={item.name} className="w-24 h-24 m-5 rounded img-fluid" />
+                        <img src={item.image} alt={item.name} className="m-5 rounded img-fluid" />
                         <p>{item.name}</p><br></br>
                         <p>{item.description}</p><br></br>
                         <span><strong>{item.quantity} x ${item.price} = {item.price * item.quantity}</strong></span>
                     </div>
                 ))}
-                <div className="order-total container border rounded bg-gradient p-3" style={{ fontSize: '20px' }}
+                <div className="container border rounded bg-gradient p-3" style={{ fontSize: '30px' }}
                 >
                     <strong>Total: ${totalPrice.toFixed(2)}</strong>
                 </div>
             </div>
 
             <form onSubmit={(e: React.FormEvent) => { void handleSubmit(e); }}>
-                <div className="shipping-details mb-4">
+                <div className="mb-4">
                     <h3 className='p-3'>Shipping Details</h3>
                     <input
                         type="text"
@@ -129,7 +129,7 @@ export const Checkout: React.FC = () => {
                         placeholder="Address"
                         value={shippingDetails.address}
                         onChange={handleShippingChange}
-                        className="w-full p-2 m-2 mb-2 border rounded"
+                        className="p-2 border rounded"
                         required
                     />
                     <input
@@ -138,7 +138,7 @@ export const Checkout: React.FC = () => {
                         placeholder="City"
                         value={shippingDetails.city}
                         onChange={handleShippingChange}
-                        className="w-full p-2 mb-2 m-2 border rounded"
+                        className="p-2 m-2 border rounded"
                         required
                     />
                     <input
@@ -147,7 +147,7 @@ export const Checkout: React.FC = () => {
                         placeholder="ZIP Code"
                         value={shippingDetails.zipCode}
                         onChange={handleShippingChange}
-                        className="w-full p-2 mb-2 m-2 border rounded"
+                        className="p-2 mb-2 border rounded"
                         required
                     />
                     <input
@@ -156,7 +156,7 @@ export const Checkout: React.FC = () => {
                         placeholder="Country"
                         value={shippingDetails.country}
                         onChange={handleShippingChange}
-                        className="w-full p-2 mb-2 m-2 border rounded"
+                        className="p-2 m-2 border rounded"
                         required
                     />
                 </div>
@@ -164,7 +164,7 @@ export const Checkout: React.FC = () => {
                     style={{ backgroundColor: 'crimson' }}
                     type="submit"
                     disabled={isLoading || cart.items.length === 0}
-                    className="checkout-button py-2 rounded"
+                    className="py-2 rounded"
                 >
                     {isLoading ? 'Processing...' : 'Complete Purchase'}
                 </button>

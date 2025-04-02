@@ -51,7 +51,7 @@ const ProductForm: React.FC = () => {
     return (
         <form onSubmit={handleSubmit} role="form" className='container'>
             <div>
-                <label htmlFor="name">Product Name</label>
+                <label htmlFor="name">Product Name</label><br></br>
                 <input
                     className='m-2'
                     type="text"
@@ -64,7 +64,7 @@ const ProductForm: React.FC = () => {
                 />
             </div>
             <div>
-                <label htmlFor="price">Price</label>
+                <label htmlFor="price">Price</label><br></br>
                 <input
                     className='m-2'
                     type="number"
@@ -76,9 +76,9 @@ const ProductForm: React.FC = () => {
                 />
             </div>
             <div>
-                <label htmlFor="description">Description</label>
+                <label htmlFor="description">Description</label><br></br>
                 <textarea
-                    className='m-2 p-2'
+                    className='m-2 p-4'
                     id="description"
                     name="description"
                     placeholder='Enter Description Here'
@@ -88,7 +88,7 @@ const ProductForm: React.FC = () => {
                 />
             </div><br></br>
             <div>
-                <label htmlFor="stock">Stock</label>
+                <label htmlFor="stock">Stock</label><br></br>
                 <input
                     className='m-2'
                     type="number"
@@ -100,7 +100,7 @@ const ProductForm: React.FC = () => {
                 />
             </div>
             <div>
-                <label htmlFor="imageUrl">Image URL</label>
+                <label htmlFor="imageUrl">Image URL</label><br></br>
                 <input
                     className='m-2'
                     type="text"
@@ -113,7 +113,7 @@ const ProductForm: React.FC = () => {
                 />
             </div>
             <div>
-                <label htmlFor="category">Category</label>
+                <label htmlFor="category">Category</label><br></br>
                 <input
                     className='m-2'
                     type="text"
@@ -125,7 +125,7 @@ const ProductForm: React.FC = () => {
                     required
                 />
             </div><br></br>
-            <button className='m-2 bg-gradient'
+            <button className='m-2 bg-gradient p-3 rounded'
                 type="submit">Add Product</button>
         </form>
     );
