@@ -1,64 +1,33 @@
 name: CI/CD
 
+# Run the workflow on pushes and pull requests
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
   pull_request:
-    branches: [ master ]
+    branches:
+      - master
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+      # Step 1: Checkout the repository code
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-        cache: 'npm'
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18' # Use a Node.js version compatible with your React app
 
-    - name: Install dependencies
-      working-directory: ./advanced-e-commerce-app
-      run: npm ci
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
 
-    - name: Run tests
-      working-directory: ./advanced-e-commerce-app
-      run: npm test
-
-    - name: Build
-      working-directory: ./advanced-e-commerce-app
-      run: npm run build
-
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
-
-    steps:
-    - uses: actions/checkout@v3
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-        cache: 'npm'
-
-    - name: Install dependencies
-      working-directory: ./advanced-e-commerce-app
-      run: npm ci
-
-    - name: Build
-      working-directory: ./advanced-e-commerce-app
-      run: npm run build
-
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./advanced-e-commerce-app/dist
-
-    - name: Build
-      run: npm run build
+      # Step 4: Run tests
+      - name: Run tests
+        run: npm test -- --watchAll=false
