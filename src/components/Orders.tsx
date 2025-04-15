@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useAuth } from './AuthContext';
 import { orderService, OrderItem, Order } from '../store/orderService';
 
+// variable for Order History
 const OrderHistory: React.FC = () => {
+    // set state of "OrderHistory" variables
     const [orders, setOrders] = useState<Order[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const { currentUser } = useAuth();
 
+    // useEffect hook for fetching orders for current user
     useEffect(() => {
         const fetchOrders = async () => {
             if (!currentUser) return;
@@ -27,6 +30,7 @@ const OrderHistory: React.FC = () => {
     }, [currentUser]);
 
     const handleDeleteOrder = async (orderId: string) => {
+        // confirmation alert when attempting to delete order
         if (!window.confirm('Are you sure you want to delete this order?')) return;
 
         try {
@@ -41,6 +45,7 @@ const OrderHistory: React.FC = () => {
     if (loading) return <div>Loading orders...</div>;
     if (error) return <div className="error-message">{error}</div>;
 
+    // renders list of orders for current user
     return (
         <div>
             <h2>Order History</h2>
@@ -52,7 +57,7 @@ const OrderHistory: React.FC = () => {
                         <div className="border m-2 p-3 bg-gradient rounded">
                             <span>Order ID: {order.id}</span><br></br>
                             <span>User ID: {order.userId}</span><br></br>
-                            <span>Date: {order.createdAt instanceof Date ? order.createdAt.toLocaleDateString() : new Date(order.createdAt * 1000).toLocaleDateString()}</span>
+                            <span>Date: {order.createdAt && typeof order.createdAt === 'object' && 'toDate' in order.createdAt ? (order.createdAt as { toDate(): Date }).toDate().toLocaleDateString() : new Date(order.createdAt).toLocaleDateString()}</span>
                         </div>
                         <div>
                             {order.items.map((item: OrderItem, index: number) => (

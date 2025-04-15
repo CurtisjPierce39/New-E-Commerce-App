@@ -8,6 +8,7 @@ import {
 } from 'firebase/firestore';
 import { db } from '../types/firebaseConfig';
 
+// typescript interface for Product
 export interface Product {
     productId: string;
     id: string;
@@ -19,8 +20,10 @@ export interface Product {
     category: string;
 }
 
+// type definition for new product
 export type NewProduct = Omit<Product, 'productId' | 'id'>;
 
+// exported variable to service Products
 export const productService = {
     async getAllProducts() {
         const querySnapshot = await getDocs(collection(db, 'products'));

@@ -1,20 +1,21 @@
 import { Navbar } from './components/NavBar';
-import ProductForm from './components/ProductForm';
 import { Auth } from './components/Login';
 import { UserProfile } from './components/UserProfile';
 import { ProductList } from './components/ProductList';
-import Orders from './components/Orders';
 import { ShoppingCart } from './components/ShoppingCart';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './components/AuthContext';
 import { store } from './types';
-import './App.css'
 import { Checkout } from './components/Checkout';
+import ProductForm from './components/ProductForm';
+import Orders from './components/Orders';
 import DisplayData from './components/DisplayUsers';
 import AddDataForm from './components/AddUserForm';
+import './App.css'
 
+// variable for accessing web app when logged in
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { currentUser, loading } = useAuth();
 

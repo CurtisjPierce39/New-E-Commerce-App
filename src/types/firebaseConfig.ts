@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
-
+// configures access to FIrebase database
 const firebaseConfig = {
     apiKey: "AIzaSyCdTru7bNbzFaANO8ekln9jZH5YruoR6zc",
     authDomain: "new-e-commerce-app-c672e.firebaseapp.com",

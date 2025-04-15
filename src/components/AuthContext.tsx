@@ -1,14 +1,16 @@
 import React, { createContext, useEffect, useState, useContext } from 'react';
 import { auth } from '../types/firebaseConfig';
 import { onAuthStateChanged, User } from 'firebase/auth';
-
+// typescript interface for authentication type
 interface AuthContextType {
     currentUser: User | null;
     loading: boolean;
 }
 
+// variable used to share authentication state throughout application
 const AuthContext = createContext<AuthContextType>({ currentUser: null, loading: true });
 
+// exported variable for useAuth
 export const useAuth = () => {
     const context = useContext(AuthContext);
     if (!context) {
@@ -16,11 +18,12 @@ export const useAuth = () => {
     }
     return context;
 };
-
+// exported variable for AuthProvider and its children
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [currentUser, setCurrentUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
 
+    // useEffect hook to handle user authentication
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
@@ -40,6 +43,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         return <div>Loading...</div>;
     }
 
+    // wraps application and provides values to it's children
     return (
         <AuthContext.Provider value={{ currentUser, loading }}>
             {children}

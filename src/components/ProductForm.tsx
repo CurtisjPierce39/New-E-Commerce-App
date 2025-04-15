@@ -78,7 +78,7 @@ const ProductForm: React.FC = () => {
             <div>
                 <label htmlFor="description">Description</label><br></br>
                 <textarea
-                    className='m-2 p-4'
+                    className='m-2 p-4 rounded'
                     id="description"
                     name="description"
                     placeholder='Enter Description Here'
@@ -125,7 +125,7 @@ const ProductForm: React.FC = () => {
                     required
                 />
             </div><br></br>
-            <button className='m-2 bg-gradient p-3 rounded'
+            <button className='m-2 bg-gradient rounded'
                 type="submit">Add Product</button>
         </form>
     );

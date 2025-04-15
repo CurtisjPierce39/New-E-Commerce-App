@@ -2,6 +2,7 @@ import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '../types/firebaseConfig';
 import { UserData } from './authService';
 
+// exported variable for servicing User data
 export const userService = {
     async getUserProfile(userId: string) {
         const userDoc = await getDoc(doc(db, 'users', userId));

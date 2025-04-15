@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { db } from '../types/firebaseConfig';
 import { collection, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 
+// typescript interface for User
 interface User {
     id?: string;
     name: string;
@@ -10,25 +11,27 @@ interface User {
     displayName: string;
 }
 
-
+// variable to display users
 const DisplayData = () => {
+    // Sets state for DisplayData variables
     const [users, setUsers] = useState<User[]>([]);
     const [newEmail, setNewEmail] = useState<string>('');
     const [newName, setNewName] = useState<string>('');
     const [newAddress, setNewAddress] = useState<string>('');
     const [newDisplayName, setDisplayName] = useState<string>('');
 
+    // variable to update User information
     const updateUser = async (userId: string, updatedData: { name?: string; email?: string; address?: string; displayName?: string; }) => {
         const userDoc = doc(db, 'users', userId);
         await updateDoc(userDoc, updatedData);
         alert("User Info Updated!")
     };
-
+    // variable to delete User doc from database
     const deleteUser = async (userId: string) => {
         await deleteDoc(doc(db, 'users', userId))
-        alert("User Deleted")
+        alert("User Deleted!")
     }
-
+    // useEffect hook to fetch User collection from firebase
     useEffect(() => {
         const fetchData = async () => {
             const querySnapshot = await getDocs(collection(db, 'users'));
@@ -42,6 +45,7 @@ const DisplayData = () => {
         void fetchData();
     }, []);
 
+    // renders list of Users
     return (
         <div>
             <h2>Users List</h2>
@@ -51,11 +55,12 @@ const DisplayData = () => {
                     className='border p-4 bg-gradient rounded'
                 >
                     <div key={user.id} className='bg-gradient rounded p-3 border'>
-                        <p>Name: {user.name}</p>
-                        <p>Email: {user.email}</p>
-                        <p>Address: {user.address}</p>
-                        <p>Display Name: {user.displayName}</p>
+                        <p><strong>Name:</strong> {user.name}</p>
+                        <p><strong>Email:</strong> {user.email}</p>
+                        <p><strong>Address:</strong> {user.address}</p>
+                        <p><strong>Display Name:</strong> {user.displayName}</p>
                     </div>
+                    {/* input fields to update user information */}
                     <input
                         onChange={(e) => setNewName(e.target.value)}
                         type="string"

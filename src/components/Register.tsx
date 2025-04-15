@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { registerUser } from '../store/authService';
 import { useNavigate } from 'react-router-dom';
 
+// typescript interface for User Form Data
 interface UserFormData {
     email: string;
     password: string;
@@ -9,6 +10,7 @@ interface UserFormData {
     address: string;
 }
 
+// variable for Registering new users(functional component)
 const Register: React.FC = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState<UserFormData>({
@@ -19,6 +21,7 @@ const Register: React.FC = () => {
     });
     const [error, setError] = useState('');
 
+    // handles form submission 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         void (async () => {
@@ -36,6 +39,7 @@ const Register: React.FC = () => {
         })();
     };
 
+    // renders form for user registration
     return (
         <form onSubmit={handleSubmit}>
             <input

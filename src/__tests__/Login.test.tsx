@@ -19,12 +19,12 @@ jest.mock('../store/authService', () => ({
     authService: {
         login: jest.fn<Promise<AuthResponse>, [string, string]>().mockImplementation(async (email: string, password: string): Promise<AuthResponse> => {
             if (!email || !password) throw new Error('Invalid credentials');
-            await Promise.resolve(); // Add await expression
+            await Promise.resolve();
             return { user: { uid: '123' } };
         }),
         register: jest.fn<Promise<AuthResponse>, [string, string, UserData]>().mockImplementation(async (email: string, password: string, userData: UserData): Promise<AuthResponse> => {
             if (!email || !password || !userData) throw new Error('Invalid registration data');
-            await Promise.resolve(); // Add await expression
+            await Promise.resolve();
             return { user: { uid: '123' } };
         })
     }

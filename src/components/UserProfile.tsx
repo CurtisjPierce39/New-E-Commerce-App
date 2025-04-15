@@ -41,10 +41,10 @@ export const UserProfile: React.FC = () => {
             <h2>User Profile</h2>
             {!isEditing ? (
                 <div className='m3 rounded p-5 bg-gradient border'>
-                    <p>Name: {profile?.name}</p>
-                    <p>Email: {profile?.email}</p>
-                    <p>Address: {profile?.address}</p>
-                    <p>Display Name: {profile?.displayName}</p>
+                    <p><strong>Name:</strong> {profile?.name}</p>
+                    <p><strong>Email:</strong> {profile?.email}</p>
+                    <p><strong>Address:</strong> {profile?.address}</p>
+                    <p><strong>Display Name:</strong> {profile?.displayName}</p>
                     <button className='bg-gradient rounded' onClick={() => setIsEditing(true)}>Edit Profile</button>
                 </div>
             ) : (
