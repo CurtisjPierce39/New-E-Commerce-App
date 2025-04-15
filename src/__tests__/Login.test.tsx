@@ -14,8 +14,9 @@ interface AuthResponse {
         uid: string;
     };
 }
-
+// mock importing authService module
 jest.mock('../store/authService', () => ({
+    // mocks user login and user registration
     authService: {
         login: jest.fn<Promise<AuthResponse>, [string, string]>().mockImplementation(async (email: string, password: string): Promise<AuthResponse> => {
             if (!email || !password) throw new Error('Invalid credentials');
@@ -29,7 +30,7 @@ jest.mock('../store/authService', () => ({
         })
     }
 }));
-
+// mocks navigate using react-router-dom
 const mockNavigate = jest.fn();
 jest.mock('react-router-dom', () => {
     const actual = jest.requireActual('react-router-dom');
@@ -38,7 +39,7 @@ jest.mock('react-router-dom', () => {
         useNavigate: () => mockNavigate
     };
 });
-
+// creates test suite using "describe()"
 describe('Auth Component', () => {
     beforeEach(() => {
         jest.clearAllMocks();
