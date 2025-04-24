@@ -1,14 +1,16 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
-// configures access to FIrebase database
+
+// configures access to Firebase database
 const firebaseConfig = {
-    apiKey: "AIzaSyCdTru7bNbzFaANO8ekln9jZH5YruoR6zc",
-    authDomain: "new-e-commerce-app-c672e.firebaseapp.com",
-    projectId: "new-e-commerce-app-c672e",
-    storageBucket: "new-e-commerce-app-c672e.firebasestorage.app",
-    messagingSenderId: "824242543168",
-    appId: "1:824242543168:web:95dc12c16fd2b682badda5"};
+    apiKey: "AIzaSyARR_gnUb1zjJHlKrJWsWMntnqMJyymll8",
+    authDomain: "upgraded-e-commerce-app.firebaseapp.com",
+    projectId: "upgraded-e-commerce-app",
+    storageBucket: "upgraded-e-commerce-app.firebasestorage.app",
+    messagingSenderId: "79155321874",
+    appId: "1:79155321874:web:3b9b837c89257d17d6cccb"
+};
 
 
 const app = initializeApp(firebaseConfig);

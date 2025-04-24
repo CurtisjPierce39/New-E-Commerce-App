@@ -13,7 +13,7 @@ const OrderHistory: React.FC = () => {
     // useEffect hook for fetching orders for current user
     useEffect(() => {
         const fetchOrders = async () => {
-            if (!currentUser) return;
+            if (!currentUser) return; //if no authenticated user exit function early
 
             try {
                 const userOrders = await orderService.getUserOrders(currentUser.uid);
@@ -65,12 +65,13 @@ const OrderHistory: React.FC = () => {
                                     <span>Product: {item.name}</span><br></br>
                                     <span>Quantity: {item.quantity}</span><br></br>
                                     <span>Price: ${item.price}</span><br></br>
-                                    <div className="order-total">
-                                        <strong>Total: ${order.totalAmount}</strong>
-                                    </div><br></br>
                                 </div>
                             ))}
-                        </div>
+                        </div><br></br>
+                        <div className="order-total">
+                            <h2><strong>Total: ${order.totalAmount}</strong></h2>
+                        </div><br></br>
+
                         <button
                             onClick={() => void handleDeleteOrder(order.id)}
                             className="px-4 py-2 text-white rounded hover:opacity-90 transition-opacity float-right"

@@ -10,7 +10,7 @@ interface UserFormData {
     address: string;
 }
 
-// variable for Registering new users(functional component)
+// object for Registering new users(functional component)
 const Register: React.FC = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState<UserFormData>({
@@ -32,7 +32,7 @@ const Register: React.FC = () => {
                     address: formData.address
                 });
                 navigate('/');
-            } catch (error) {
+            } catch (error) { //error handling
                 setError('Failed to register');
                 console.error('Registration error:', error);
             }

@@ -10,6 +10,7 @@ import {
 } from 'firebase/firestore';
 import { db } from '../types/firebaseConfig';
 
+//typescript interface for OrderItem
 export interface OrderItem {
     name: string;
     productId: string;
@@ -18,6 +19,7 @@ export interface OrderItem {
     price: number;
 }
 
+//typescript interface for Order
 export interface Order {
     totalAmount: number;
     id: string;
@@ -30,22 +32,22 @@ export interface Order {
 export const orderService = {
     async createOrder(order: Order) {
         return await addDoc(collection(db, 'orders'), {
-            ...order,
-            createdAt: new Date()
+            ...order, //spreads all order properties
+            createdAt: new Date() //adds current timestamp
         });
     },
 
     async getUserOrders(userId: string) {
         const q = query(
             collection(db, 'orders'),
-            where('userId', '==', userId),
-            orderBy('createdAt', 'desc')
+            where('userId', '==', userId), //filters orders by user ID
+            orderBy('createdAt', 'desc') //sort by creation date, newest first
         );
 
-        const querySnapshot = await getDocs(q);
-        return querySnapshot.docs.map(doc => ({
+        const querySnapshot = await getDocs(q); //retrieves documents matching query
+        return querySnapshot.docs.map(doc => ({ //returns results and stores them in querySnapshot. Maps through each document
             id: doc.id,
-            ...doc.data()
+            ...doc.data() //takes document ID, spreads document data and combines them into new object
         }));
     },
 

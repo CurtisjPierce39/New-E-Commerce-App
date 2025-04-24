@@ -3,9 +3,10 @@ import '@testing-library/jest-dom';
 import ProductForm from '../components/ProductForm';
 import { productService } from '../store/productService';
 
-jest.mock('../store/productService', () => ({
+jest.mock('../store/productService', () => ({//creates mock for productService
     productService: {
-        createProduct: jest.fn().mockResolvedValue({
+        createProduct: jest.fn().mockResolvedValue({//mocks createProduct function
+            //returns a promise that resolves to an object with id, name, price, description, stock, imageUrl, and category
             id: '101',
             name: 'T Shirt',
             price: 0,
@@ -17,14 +18,14 @@ jest.mock('../store/productService', () => ({
     }
 }));
 
-beforeEach(() => {
+beforeEach(() => {//clears all mocks before each test
     jest.clearAllMocks();
 });
 
-describe('ProductForm', () => {
-    test('submits the form data correctly', async () => {
+describe('ProductForm', () => {//renders ProductForm component
+    test('submits the form data correctly', async () => {//tests if form data is submitted correctly
         render(<ProductForm />);
-
+        //mocks user input for form data
         fireEvent.change(screen.getByLabelText(/Product Name/i), { target: { value: 'T Shirt' } });
         fireEvent.change(screen.getByLabelText(/Price/i), { target: { value: '0' } });
         fireEvent.change(screen.getByLabelText(/Description/i), { target: { value: 'White T Shirt' } });
@@ -32,10 +33,10 @@ describe('ProductForm', () => {
         fireEvent.change(screen.getByLabelText(/Image URL/i), { target: { value: 'unsplash.com/tshirt' } });
         fireEvent.change(screen.getByLabelText(/Category/i), { target: { value: 'Mens Clothing' } });
 
-        const form = screen.getByRole('form');
+        const form = screen.getByRole('form');//mocks submitting form
         fireEvent.submit(form);
 
-        await waitFor(() => {
+        await waitFor(() => {//expects createProduct function to have been called with correct data
             const expectedData = {
                 name: 'T Shirt',
                 price: 0,

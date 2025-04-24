@@ -2,6 +2,8 @@ Welcome to my My E-Commerce App!!
 
 Your one stop shop where you can browse and add products, add them to your cart, remove them and checkout!!
 
+In order to add a new product to the database, click on "Add Products" in the Nav Bar. Input all information than click submit. New product will be added to database.
+
 In order to add items to your cart, scroll down and click the "Add to Cart" button underneath each product.
 
 Continue to click this button to add to the quantity of each product added to your shopping cart.

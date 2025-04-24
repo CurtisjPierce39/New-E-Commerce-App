@@ -15,7 +15,7 @@ import DisplayData from './components/DisplayUsers';
 import AddDataForm from './components/AddUserForm';
 import './App.css'
 
-// variable for accessing web app when logged in
+// object for accessing web app when logged in
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { currentUser, loading } = useAuth();
 
@@ -26,7 +26,8 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   if (!currentUser) {
     return <Navigate to="/login" />;
   }
-
+  //React fragment
+  //refers to anything wrapped by "ProtectedRoute"
   return <>{children}</>;
 };
 
@@ -34,14 +35,20 @@ const queryClient = new QueryClient();
 
 function App() {
   return (
+    //allows for global state management
+    //allows for components to access and modify global state
     <QueryClientProvider client={queryClient}>
+      {/*allows for components to access and modify global state*/}
       <Provider store={store}>
+        {/*allows for components to access and modify global state*/}
         <AuthProvider>
+          {/*allows for navigation between different pages*/}
           <BrowserRouter>
             <div className="min-h-screen bg-gray-100">
               <Navbar />
               <Routes>
                 <Route path="/login" element={<Auth />} />
+                {/*if user is not logged in, redirect to login page*/}
                 <Route path="/" element={
                   <ProtectedRoute>
                     <ProductList />

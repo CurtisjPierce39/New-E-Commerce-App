@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { db } from '../types/firebaseConfig';
 import { collection, addDoc } from 'firebase/firestore';
 
+// typescript interface for User data
 interface User {
     id?: string;
     name: string;
@@ -10,15 +11,18 @@ interface User {
     displayName: string;
 }
 
-
+// variable for adding new user data(functional component)
 const AddDataForm: React.FC = () => {
+    // sets state for user data and renders empty 
     const [data, setData] = useState<User>({ name: '', email: '', address: '', displayName: ''});
 
+    // variable for handling data change when data is inputted
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setData({ ...data, [name]: value });
     };
 
+    // handles submitted data and creates new user object in firebase collection
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
@@ -30,6 +34,7 @@ const AddDataForm: React.FC = () => {
         }
     };
 
+    // renders form for adding new user
     return (
         <form onSubmit={(e: React.FormEvent) => { void handleSubmit(e); }}>
             <h1>Add New User</h1>

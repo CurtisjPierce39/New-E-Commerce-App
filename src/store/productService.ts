@@ -23,7 +23,7 @@ export interface Product {
 // type definition for new product
 export type NewProduct = Omit<Product, 'productId' | 'id'>;
 
-// exported variable to service Products
+// exported object to service Products
 export const productService = {
     async getAllProducts() {
         const querySnapshot = await getDocs(collection(db, 'products'));

@@ -4,6 +4,7 @@ import { authService, UserData } from '../store/authService';
 import { useNavigate } from 'react-router-dom';
 
 export const Auth: React.FC = () => {
+    //sets state of objects and hooks
     const [isLogin, setIsLogin] = useState(true);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -12,27 +13,30 @@ export const Auth: React.FC = () => {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
+    //handles async operations and form submissions
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setError('');
+        setError(''); //clears any existing errors 
         try {
             if (isLogin) {
-                await authService.login(email, password);
+                await authService.login(email, password); // calls authService.login with email/password
             } else {
                 const userData: UserData = { email, name, address };
-                await authService.register(email, password, userData);
+                await authService.register(email, password, userData); //creates userData object and calls authService.register
             }
-            navigate('/');
+            navigate('/'); //navigates to homepage
         } catch (error) {
+            //captures error message, updates error state and logs error to console
             const errorMessage = error instanceof Error ? error.message : 'Authentication failed';
             setError(errorMessage);
             console.error('Authentication error:', error);
         }
     };
 
+    //renders login/registration form
     return (
         <div className="auth-container">
-            <h2 data-testid="auth-title">{isLogin ? 'Login' : 'Register'}</h2>
+            <h2 data-testid="auth-title">{isLogin ? 'Login' : 'Register'}</h2> {/* toggles between login and register forms*/}
             <form onSubmit={(e: React.FormEvent) => { void handleSubmit(e); }} data-testid="auth-form">
                 <input
                     type="email"
@@ -50,7 +54,7 @@ export const Auth: React.FC = () => {
                     data-testid="password-input"
                     required
                 />
-                {!isLogin && (
+                {!isLogin && ( //only renders if isLogin is false
                     <>
                         <input
                             type="text"
@@ -70,9 +74,9 @@ export const Auth: React.FC = () => {
                         />
                     </>
                 )}
-                {error && <div data-testid="error-message" className="error-message">{error}</div>}
+                {error && <div data-testid="error-message" className="error-message">{error}</div>} {/* displays error messages only when error state is not empty */}
                 <button type="submit" data-testid="submit-button">
-                    {isLogin ? 'Login' : 'Register'}
+                    {isLogin ? 'Login' : 'Register'}  {/* text changes based on mode */}
                 </button>
             </form>
             <button 

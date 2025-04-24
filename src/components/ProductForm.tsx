@@ -2,8 +2,9 @@ import * as React from 'react';
 import { useState } from 'react';
 import { productService, Product } from '../store/productService';
 
+//variable for Product Form
 const ProductForm: React.FC = () => {
-    const [product, setProduct] = useState<Omit<Product, 'productId' | 'id'>>({
+    const [product, setProduct] = useState<Omit<Product, 'productId' | 'id'>>({ //omits product id 
         name: '',
         price: 0,
         description: '',
@@ -12,12 +13,12 @@ const ProductForm: React.FC = () => {
         category: '',
     });
 
-
+    //takes an event parameter that works with both input and textarea elements
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
+        const { name, value } = e.target; //destructures the event target to get the inputs name and value
         setProduct(prev => ({
-            ...prev,
-            [name]: name === 'price' || name === 'stock' ? Number(value) : value
+            ...prev,// uses spread operator to maintain existing values
+            [name]: name === 'price' || name === 'stock' ? Number(value) : value //checks if field being updated is either "price" or "stock"
         }));
     };
 
@@ -25,6 +26,7 @@ const ProductForm: React.FC = () => {
         e.preventDefault();
         void (async () => {
             try {
+                //creates new product using productService
                 await productService.createProduct({
                     name: product.name,
                     price: product.price,
@@ -33,6 +35,7 @@ const ProductForm: React.FC = () => {
                     imageUrl: product.imageUrl,
                     category: product.category
                 });
+                //resets form to initial state after successful submission
                 setProduct({
                     name: '',
                     price: 0,
@@ -48,6 +51,7 @@ const ProductForm: React.FC = () => {
         })();
     };
 
+    //renders product form 
     return (
         <form onSubmit={handleSubmit} role="form" className='container'>
             <div>

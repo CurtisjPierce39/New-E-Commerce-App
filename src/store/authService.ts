@@ -13,13 +13,13 @@ export interface UserData {
     name: string;
     address?: string;
 }
-// typescript variable to register new user
+// typescript object to register new user
 export const registerUser = async (
     email: string, 
     password: string, 
     userData: UserData
 
-): Promise<UserCredential> => {
+): Promise<UserCredential> => { //returns a promise of UserCredential
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     await setDoc(doc(db, 'users', userCredential.user.uid), {
         ...userData,
@@ -27,7 +27,7 @@ export const registerUser = async (
     });
     return userCredential;
 };
-// exported variable for authentication services
+// exported object for authentication services
 export const authService = {
     async register(email: string, password: string, userData: UserData): Promise<UserCredential> {
         return registerUser(email, password, userData);

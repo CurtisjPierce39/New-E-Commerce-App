@@ -1,28 +1,23 @@
 import type { Config } from '@jest/types';
 
 const config: Config.InitialOptions = {
-    preset: 'ts-jest',
-    testEnvironment: 'jsdom',
-    setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
-    moduleNameMapper: {
-        '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
-        '\\.(jpg|jpeg|png|gif|webp|svg)$': 'identity-obj-proxy'
-    },
+    preset: 'ts-jest', //preset for TypeScript support
+    testEnvironment: 'jsdom', //test environment simulation
+    setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'], //points to setupTests.ts for additional test setup
     transform: {
-        '^.+\\.(ts|tsx)$': 'ts-jest',
-        '^.+\\.(js|jsx)$': ['babel-jest', { presets: ['@babel/preset-env', '@babel/preset-react'] }]
+        '^.+\\.(ts|tsx)$': 'ts-jest', //sets up file transformation for TypeScript files
     },
     testMatch: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
     globals: {
-        'ts-jest': {
+        'ts-jest': { //configures ts-jest with TypeScript compiler options
             tsconfig: 'tsconfig.json',
             diagnostics: {
-                warnOnly: true
+                warnOnly: true //sets warnings-only for diagnostics
             }
         },
     rootDir: './',
-    roots: ['<rootDir>/src']
+    roots: ['<rootDir>/src'] //set to look for tests in the src directory
     },
 };
 

@@ -5,17 +5,18 @@ import { useNavigate } from 'react-router-dom';
 import { RootState } from '../types';
 import { useSelector } from 'react-redux';
 
+// variable for navbar(functional component)
 export const Navbar: React.FC = () => {
     const navigate = useNavigate();
-    const user = auth.currentUser;
-    const cartItems = useSelector((state: RootState) => state.cart.items);
-    const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+    const user = auth.currentUser; // gets current firebase auth user
+    const cartItems = useSelector((state: RootState) => state.cart.items); //gets cart items from redux
+    const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0); //calculates total items in cart
 
 
     const handleLogout = async () => {
         try {
-            await auth.signOut();
-            navigate('/login');
+            await auth.signOut();//firebase sign out
+            navigate('/login'); //navigate to login page
         } catch (error) {
             console.error('Logout error:', error);
         }
@@ -27,11 +28,11 @@ export const Navbar: React.FC = () => {
                 <Link to="/">My E-Commerce App</Link>
             </div>
             <div className="navbar-links">
-                <Link to="/addproducts">Add Products</Link>
+                <Link to="/addproducts">Add Products</Link> 
                 {user ? (
                     <>
                         <Link to="/cart">
-                            <span>Cart&nbsp;</span>
+                            <span>Cart&nbsp;</span> {/* cart link with item counter */}
                             {totalItems > 0 && (
                                 <span>
                                     ({totalItems})
